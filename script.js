@@ -8,8 +8,9 @@ fetch('https://api.github.com/users/oxyrud')
     url = json.html_url;
 
   let userName = () => {
-	let newName = document.createElement('h1');
+	let newName = document.createElement('a');
     newName.innerHTML = name;
+    newName.href = url;
     document.body.appendChild(newName); 
   }
  
