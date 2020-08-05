@@ -34,17 +34,18 @@ fetch('https://api.github.com/users/oxyrud')
     document.body.appendChild(newUrl);
  
   }
+  if (json.name === "Not Found"  && json.avatar_url === "Not Found"  && json.bio === "Not Found"  && json.html_url === "Not Found" ){
+	  alert(err + 'Информация о пользователе не доступна')
+  } else {
+    userName ();
+    userPhoto ();
+    userBio ();
+    userUrl ();
+  }
 
- userName ();
- userPhoto ();
- userBio ();
- userUrl ();
-  
 })
 
 .catch(err => alert(err)); 
-
- 
  
 
  
