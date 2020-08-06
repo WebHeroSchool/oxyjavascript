@@ -1,5 +1,19 @@
+let url = window.location.toString();
+
+let getUsername = (url) => {
+        let urlArr = url.split('=');
+        let urlName = urlArr[1];
+        if (urlName == undefined){
+            urlName = 'oxyrud';
+        }
+        return urlName
+    }
+
+let name = getUsername(url)
+
+
 const body = document.body
-fetch('https://api.github.com/users/oxyrud')
+fetch('https://api.github.com/users/'+ name)
   .then(res => res.json())
   .then(json => {
     name = json.name;
@@ -31,7 +45,7 @@ fetch('https://api.github.com/users/oxyrud')
   let userUrl = () => {
   	let newUrl = document.createElement('a');
     newUrl.href = url;
-    newUrl.innerHTML = 'https://github.com/oxyrud';
+    newUrl.innerHTML = url;
     document.body.appendChild(newUrl);
  
   }
