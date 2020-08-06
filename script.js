@@ -7,10 +7,9 @@ let getUsername = (url) => {
             urlName = 'oxyrud';
         }
         return urlName
-    }
+}
 
 let name = getUsername(url)
-
 
 const body = document.body
 fetch('https://api.github.com/users/'+ name)
@@ -21,44 +20,42 @@ fetch('https://api.github.com/users/'+ name)
     bio = json.bio;
     url = json.html_url;
 
-  let userName = () => {
-	let newName = document.createElement('a');
-    newName.innerHTML = name;
-    newName.href = url;
-    document.body.appendChild(newName); 
-  }
+    let userName = () => {
+	  let newName = document.createElement('a');
+      newName.innerHTML = name;
+      newName.href = url;
+      document.body.appendChild(newName); 
+    }
  
-  let userPhoto = () => {
-    let newPhoto = document.createElement('img');
-    newPhoto.src = photo;
-    document.body.appendChild(newPhoto);
+    let userPhoto = () => {
+      let newPhoto = document.createElement('img');
+      newPhoto.src = photo;
+      document.body.appendChild(newPhoto);
+    }
 
-  }
+    let userBio = () => {
+      let newBio = document.createElement('p');
+      newBio.innerHTML = bio;
+      document.body.appendChild(newBio);
+    }
 
-  let userBio = () => {
-    let newBio = document.createElement('p');
-    newBio.innerHTML = bio;
-    document.body.appendChild(newBio);
-   }
+    let userUrl = () => {
+  	  let newUrl = document.createElement('a');
+      newUrl.href = url;
+      newUrl.innerHTML = url;
+      document.body.appendChild(newUrl);
+    }
 
+    if (json.name === "Not Found" || json.avatar_url === "Not Found"  || json.bio === "Not Found" ||json.html_url === "Not Found" ){
+	    alert(err + 'Информация о пользователе не доступна')
+    } else {
+      userName ();
+      userPhoto ();
+      userBio ();
+      userUrl ();
+    }
 
-  let userUrl = () => {
-  	let newUrl = document.createElement('a');
-    newUrl.href = url;
-    newUrl.innerHTML = url;
-    document.body.appendChild(newUrl);
- 
-  }
-  if (json.name === "Not Found" || json.avatar_url === "Not Found"  || json.bio === "Not Found" ||json.html_url === "Not Found" ){
-	  alert(err + 'Информация о пользователе не доступна')
-  } else {
-    userName ();
-    userPhoto ();
-    userBio ();
-    userUrl ();
-  }
-
-})
+  })
 
 .catch(err => alert(err)); 
  
