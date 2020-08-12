@@ -1,6 +1,6 @@
 let url = window.location.toString();
 
-let getUsername = (url) => {
+let getUrlName = (url) => {
         let urlArr = url.split('=');
         let urlName = urlArr[1];
         if (urlName == undefined){
@@ -8,12 +8,13 @@ let getUsername = (url) => {
         }
         return urlName;
 }
+
 let getDate = new Promise((resolve,reject) =>{
 	let date = new Date();
 	setTimeout(() => resolve(date),2000)
 })
 
-let userInfo = fetch('https://api.github.com/users/'+ name)
+let userInfo = fetch('https://api.github.com/users/'+ urlName)
 
 Promise.all([userInfo,getDate])
   .then(([request,date]) =>{
@@ -71,7 +72,7 @@ Promise.all([userInfo,getDate])
     else {
     	alert('Пользовтель с данным именем не существует')
     }
-    
+
   })
 
 .catch(err => alert(err)); 
