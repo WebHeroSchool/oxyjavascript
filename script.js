@@ -6,58 +6,73 @@ let getUsername = (url) => {
         if (urlName == undefined){
             urlName = 'oxyrud';
         }
-        return urlName
+        return urlName;
 }
+let getDate = new Promise((resolve,reject) =>{
+	let date = new Date();
+	setTimeout(() => resolve(date),2000)
+})
 
-let name = getUsername(url)
+let userInfo = fetch('https://api.github.com/users/'+ name)
 
-const body = document.body
-fetch('https://api.github.com/users/'+ name)
+Promise.all([userInfo,getDate])
+  .then(([request,date]) =>{
+  	requestInfo = request;
+  	requestDate = date;
+  })
   .then(res => res.json())
-  .then(json => {
-    name = json.name;
-    photo = json.avatar_url;
-    bio = json.bio;
-    url = json.html_url;
+  .then(json =>{
+  	let userName = json.name;
+  	let userPhoto = json.avatar_url;
+  	let userBio = json.bio;
+  	let userUrl = json.html_url;
+  	let date = requestDate;
 
-    let userName = () => {
-	  let newName = document.createElement('a');
-      newName.innerHTML = name;
-      newName.href = url;
-      document.body.appendChild(newName); 
-    }
+  	if(userName != undefined){
+  		let getUserName = () => {
+	       let newName = document.createElement('a');
+           newName.innerHTML = name;
+           newName.href = url;
+           document.body.appendChild(newName); 
+        }
  
-    let userPhoto = () => {
-      let newPhoto = document.createElement('img');
-      newPhoto.src = photo;
-      document.body.appendChild(newPhoto);
-    }
+        let getUserPhoto = () => {
+           let newPhoto = document.createElement('img');
+           newPhoto.src = photo;
+           document.body.appendChild(newPhoto);
+        }
 
-    let userBio = () => {
-      let newBio = document.createElement('p');
-      newBio.innerHTML = bio;
-      document.body.appendChild(newBio);
-    }
+        let getUserBio = () => {
+           let newBio = document.createElement('p');
+           newBio.innerHTML = bio;
+           document.body.appendChild(newBio);
+        }
 
-    let userUrl = () => {
-  	  let newUrl = document.createElement('a');
-      newUrl.href = url;
-      newUrl.innerHTML = url;
-      document.body.appendChild(newUrl);
+        let getUserUrl = () => {
+  	       let newUrl = document.createElement('a');
+           newUrl.href = url;
+           newUrl.innerHTML = url;
+           document.body.appendChild(newUrl);
+        }
+        let getNewDate = () => {
+        	let newDate = document.createElement('p');
+        	newDate.innerHTML = requestDate;
+        	document.body.appendChild(newUrl);
+        }
+    
+        preloader.classList.add('hidden');
+        getUserName ();
+        getUserPhoto ();
+        getUserBio ();
+        getUserUrl ();
+        getNewDate ();
     }
-
-    if (json.name === "Not Found" || json.avatar_url === "Not Found"  || json.bio === "Not Found" ||json.html_url === "Not Found" ){
-	    alert(err + 'Информация о пользователе не доступна')
-    } else {
-      userName ();
-      userPhoto ();
-      userBio ();
-      userUrl ();
+    
+    else {
+    	alert('Пользовтель с данным именем не существует')
     }
-
+    
   })
 
 .catch(err => alert(err)); 
- 
-
  
