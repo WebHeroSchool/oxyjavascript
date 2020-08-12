@@ -29,6 +29,7 @@ Promise.all([userInfo,getDate])
   	let userBio = json.bio;
   	let userUrl = json.html_url;
   	let date = requestDate;
+    let preloader = document.querySelector('.preloader');
 
   	if(userName != undefined){
   		let getUserName = () => {
@@ -40,26 +41,26 @@ Promise.all([userInfo,getDate])
  
         let getUserPhoto = () => {
            let newPhoto = document.createElement('img');
-           newPhoto.src = photo;
+           newPhoto.src = userPhoto;
            document.body.appendChild(newPhoto);
         }
 
         let getUserBio = () => {
            let newBio = document.createElement('p');
-           newBio.innerHTML = bio;
+           newBio.innerHTML =userBio;
            document.body.appendChild(newBio);
         }
 
         let getUserUrl = () => {
   	       let newUrl = document.createElement('a');
            newUrl.href = url;
-           newUrl.innerHTML = url;
+           newUrl.innerHTML = userUrl;
            document.body.appendChild(newUrl);
         }
         let getNewDate = () => {
         	let newDate = document.createElement('p');
         	newDate.innerHTML = requestDate;
-        	document.body.appendChild(newUrl);
+        	document.body.appendChild(newDate);
         }
     
         preloader.classList.add('hidden');
