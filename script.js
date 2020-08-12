@@ -7,12 +7,12 @@ let getUrlName = (url) => {
             urlName = 'oxyrud';
         }
         return urlName;
-
 }
 let name = getUrlName(url);
+
 let getDate = new Promise((resolve,reject) =>{
 	let date = new Date();
-	setTimeout(() => resolve(date),2000)
+	setTimeout(() => new Date() ? resolve(date) : reject('Время неизвестно'),2000)
 })
 
 let userInfo = fetch('https://api.github.com/users/'+ name)
