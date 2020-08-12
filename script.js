@@ -1,5 +1,5 @@
 let url = window.location.toString();
-let name = getUrlName(url);
+
 let getUrlName = (url) => {
         let urlArr = url.split('=');
         let urlName = urlArr[1];
@@ -9,7 +9,7 @@ let getUrlName = (url) => {
         return urlName;
 
 }
-
+let name = getUrlName(url);
 let getDate = new Promise((resolve,reject) =>{
 	let date = new Date();
 	setTimeout(() => resolve(date),2000)
