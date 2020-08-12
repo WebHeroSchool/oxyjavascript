@@ -22,7 +22,7 @@ Promise.all([userInfo,getDate])
   	requestInfo = request;
   	requestDate = date;
   })
-  .then(res => res.json())
+  .then(res => requestInfo.json())
   .then(json =>{
   	let userName = json.name;
   	let userPhoto = json.avatar_url;
