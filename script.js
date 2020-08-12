@@ -1,5 +1,5 @@
 let url = window.location.toString();
-
+let name = getUrlName(url);
 let getUrlName = (url) => {
         let urlArr = url.split('=');
         let urlName = urlArr[1];
@@ -7,6 +7,7 @@ let getUrlName = (url) => {
             urlName = 'oxyrud';
         }
         return urlName;
+
 }
 
 let getDate = new Promise((resolve,reject) =>{
@@ -14,7 +15,7 @@ let getDate = new Promise((resolve,reject) =>{
 	setTimeout(() => resolve(date),2000)
 })
 
-let userInfo = fetch('https://api.github.com/users/'+ urlName)
+let userInfo = fetch('https://api.github.com/users/'+ name)
 
 Promise.all([userInfo,getDate])
   .then(([request,date]) =>{
